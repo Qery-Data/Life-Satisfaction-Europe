@@ -7,6 +7,12 @@ os.makedirs('data', exist_ok=True)
 #Life satisfaction over time
 dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw01?lang=en&isced11=TOTAL&indic_wb=LIFESAT&sex=T&age=Y_GE16&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=ME&geo=MK&geo=AL&geo=RS&geo=TR&geo=XK&time=2023&time=2022&time=2021&time=2018&time=2013')
 df = dataset.write('dataframe')
+rename_dict = {
+    'Czechia': 'Czech Rep.',
+    'European Union - 27 countries (from 2020)': 'EU27',
+    'Türkiye': 'Turkey'
+}
+df.replace(rename_dict, inplace=True)
 df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Time', values='value')
 df_new.to_csv('data/Eurostat_Life_Satisfaction_Overall_Time.csv', index=True)
 
