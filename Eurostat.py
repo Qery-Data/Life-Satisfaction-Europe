@@ -23,7 +23,7 @@ df_new['difference 2013'] = df_new['2022'] - df_new['2013']
 df_new['difference 2018'] = df_new['2022'] - df_new['2018']
 df_new['difference 2021'] = df_new['2022'] - df_new['2021']
 df_change = df_new[['difference 2013', 'difference 2018', 'difference 2021', '2022']]
-df_change = df_change.dropna()
+df_change = df_change.dropna(how='all')
 df_change = df_change.round(2)
 df_change.to_csv('data/Eurostat_Life_Satisfaction_Overall_Time_Change.csv', index=True)
 
