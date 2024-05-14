@@ -94,15 +94,15 @@ df_new = df_new.dropna()
 df_new.to_csv('data/Eurostat_Life_Satisfaction_Overall_Income.csv', index=True)
 
 #Life satisfaction by household
-dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw02?lang=en&deg_urb=TOTAL&quantile=TOTAL&hhtyp=A1&hhtyp=A2&hhtyp=A_GE3&hhtyp=HH_NDCH&hhtyp=HH_DCH&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=MK&geo=AL&geo=RS&time=2022')
+dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw02?lang=en&deg_urb=TOTAL&quant_inc=TOTAL&hhcomp=A1&hhcomp=A2&hhcomp=A_GE3&hhcomp=DCH&hhcomp=NDCH&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=MK&geo=AL&geo=RS&time=2022')
 df = dataset.write('dataframe')
 df.replace(rename_dict, inplace=True)
-df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Type of household', values='value')
+df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Household composition', values='value')
 df_new = df_new.dropna()
 df_new.to_csv('data/Eurostat_Life_Satisfaction_Overall_Household.csv', index=True)
 
 #Life satisfaction by degree of urbanisation
-dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw02?lang=en&deg_urb=DEG1&deg_urb=DEG2&deg_urb=DEG3&quantile=TOTAL&hhtyp=TOTAL&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=MK&geo=AL&geo=RS&time=2022')
+dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw02?lang=en&deg_urb=DEG1&deg_urb=DEG2&deg_urb=DEG3&quant_inc=TOTAL&hhcomp=TOTAL&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=MK&geo=AL&geo=RS&time=2022')
 df = dataset.write('dataframe')
 df.replace(rename_dict, inplace=True)
 df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Degree of urbanisation', values='value')
