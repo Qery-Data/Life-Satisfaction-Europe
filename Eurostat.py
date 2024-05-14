@@ -89,7 +89,7 @@ df_new.to_csv('data/Eurostat_Life_Satisfaction_Overall_Education.csv', index=Tru
 dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw02?lang=en&deg_urb=TOTAL&hhcomp=TOTAL&quant_inc=TOTAL&quant_inc=QU1&quant_inc=QU2&quant_inc=QU3&quant_inc=QU4&quant_inc=QU5&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=MK&geo=AL&geo=RS&time=2022')
 df = dataset.write('dataframe')
 df.replace(rename_dict, inplace=True)
-df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Quantile', values='value')
+df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Income quantile', values='value')
 df_new = df_new.dropna()
 df_new.to_csv('data/Eurostat_Life_Satisfaction_Overall_Income.csv', index=True)
 
