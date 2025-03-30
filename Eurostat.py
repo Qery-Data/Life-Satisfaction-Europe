@@ -47,8 +47,8 @@ rename_dict = {'European Union - 27 countries (from 2020)': 'EU27',
     'Kosovo*': 'Kosovo'
 }
 
-#Life Satisfaction by age in 2022
-dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw01?lang=en&isced11=TOTAL&sex=T&age=Y16-19&age=Y16-24&age=Y16-29&age=Y_GE16&age=Y20-24&age=Y25-29&age=Y25-34&age=Y25-64&age=Y35-49&age=Y50-64&age=Y65-74&age=Y_GE65&age=Y_GE75&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=ME&geo=MK&geo=AL&geo=RS&geo=TR&geo=XK&time=2022')
+#Life Satisfaction by age in 2023
+dataset = pyjstat.Dataset.read('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_pw01?lang=en&isced11=TOTAL&sex=T&age=Y16-24&age=Y25-64&age=Y_GE65&geo=EU27_2020&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=NO&geo=CH&geo=UK&geo=ME&geo=MK&geo=AL&geo=RS&geo=TR&geo=XK&time=2023')
 df = dataset.write('dataframe')
 df.replace(rename_dict, inplace=True)
 df_new = df.pivot(index='Geopolitical entity (reporting)', columns='Age class', values='value')
